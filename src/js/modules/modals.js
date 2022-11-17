@@ -131,4 +131,3 @@ const modals = () => {
 
 
 export default modals;
-export { closeModal };

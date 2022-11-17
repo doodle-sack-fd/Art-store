@@ -4157,6 +4157,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
 /* harmony import */ var _modules_mask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/mask */ "./src/js/modules/mask.js");
 /* harmony import */ var _modules_checkTextInputs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/checkTextInputs */ "./src/js/modules/checkTextInputs.js");
+/* harmony import */ var _modules_showCards__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/showCards */ "./src/js/modules/showCards.js");
+
 
 
 
@@ -4172,6 +4174,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_mask__WEBPACK_IMPORTED_MODULE_3__["default"])('[name="phone"]');
   Object(_modules_checkTextInputs__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="name"]');
   Object(_modules_checkTextInputs__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="message"]');
+  Object(_modules_showCards__WEBPACK_IMPORTED_MODULE_5__["default"])('.button-transparent', '.styles-2');
 });
 
 /***/ }),
@@ -4196,8 +4199,6 @@ var checkTextInputs = function checkTextInputs(selector) {
   var txtInputs = document.querySelectorAll(selector);
   txtInputs.forEach(function (input) {
     input.addEventListener('keypress', function (evt) {
-      input.style.autocomplete = "off";
-
       if (evt.key.match(/[^а-яё 0-9]/ig)) {
         evt.preventDefault();
       }
@@ -4550,6 +4551,38 @@ var modals = function modals() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
+
+/***/ }),
+
+/***/ "./src/js/modules/showCards.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/showCards.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var showCards = function showCards(triggerSelector, classSelector) {
+  var btn = document.querySelector(triggerSelector),
+      cards = document.querySelectorAll(classSelector);
+  cards.forEach(function (elem) {
+    elem.classList.add('animated', 'fadeInUp');
+  });
+  btn.addEventListener('click', function () {
+    cards.forEach(function (elem) {
+      elem.classList.remove("hidden-lg", "hidden-md", "hidden-sm", "hidden-xs", "styles-2");
+      elem.classList.add("col-sm-3", "col-sm-offset-0", "col-xs-10", "col-xs-offset-1");
+    });
+    btn.remove();
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (showCards);
 
 /***/ }),
 

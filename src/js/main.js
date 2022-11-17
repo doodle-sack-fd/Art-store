@@ -4,6 +4,7 @@ import forms from './modules/forms';
 import mask from './modules/mask';
 import checkTextInputs from './modules/checkTextInputs';
 import showCards from './modules/showCards';
+import accordeon from './modules/accordeon';
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -16,4 +17,5 @@ window.addEventListener('DOMContentLoaded', () => {
     checkTextInputs('[name="name"]');
     checkTextInputs('[name="message"]');
     showCards('.button-transparent', '.styles-2');
-});
+    accordeon()
+});;

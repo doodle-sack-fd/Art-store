@@ -1,4 +1,5 @@
 // import checkNumInputs from './checkNumInputs';
+import { postData } from "../services/requests";
 const forms = (popupSelector) => {
 
     const form = document.querySelectorAll('form'),
@@ -21,15 +22,6 @@ const forms = (popupSelector) => {
         question: 'assets/question.php'
     };
 
-    const postData = async (url, data) => {
-        const res = await fetch(url, {
-            method: 'POST',
-            body: data
-        });
-
-        return await res.text();
-    };
-
     const resetInputs = () => {
         inputs.forEach(elem => {
             elem.value = '';
@@ -37,7 +29,7 @@ const forms = (popupSelector) => {
 
         upload.forEach(elem => {
             elem.previousElementSibling.textContent = 'Файл не выбран';
-        })
+        });
     };
 
     /* check length name */
@@ -51,6 +43,11 @@ const forms = (popupSelector) => {
             const name = arr[0].substring(0, 6) + dots + arr[1];
             elem.previousElementSibling.textContent = name;
 
+            let maxSize = 500000;
+            if (elem.files[0].size > maxSize) {
+                alert((`File size > then ${maxSize}`)) ;
+                resetInputs();
+            }
         });
     });
 
@@ -100,9 +97,9 @@ const forms = (popupSelector) => {
                         statusMessage.remove();
                         item.style.display = 'block';
                         item.classList.remove('fadeOutUp');
-                        item.classList.add('fadeInUp'); 
+                        item.classList.add('fadeInUp');
                     }, 5000);
-                    
+
                 });
         });
 

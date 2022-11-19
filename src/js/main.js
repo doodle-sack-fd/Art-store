@@ -16,6 +16,6 @@ window.addEventListener('DOMContentLoaded', () => {
     mask('[name="phone"]');
     checkTextInputs('[name="name"]');
     checkTextInputs('[name="message"]');
-    showCards('.button-transparent', '.styles-2');
-    accordeon()
-});;
+    showCards('.button-transparent', '#styles .row');
+    accordeon();
+});

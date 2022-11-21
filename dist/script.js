@@ -4351,6 +4351,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_checkTextInputs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/checkTextInputs */ "./src/js/modules/checkTextInputs.js");
 /* harmony import */ var _modules_showCards__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/showCards */ "./src/js/modules/showCards.js");
 /* harmony import */ var _modules_accordeon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/accordeon */ "./src/js/modules/accordeon.js");
+/* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/calc */ "./src/js/modules/calc.js");
+
 
 
 
@@ -4370,6 +4372,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_checkTextInputs__WEBPACK_IMPORTED_MODULE_4__["default"])('[name="message"]');
   Object(_modules_showCards__WEBPACK_IMPORTED_MODULE_5__["default"])('.button-transparent', '#styles .row');
   Object(_modules_accordeon__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  Object(_modules_calc__WEBPACK_IMPORTED_MODULE_7__["default"])('#size', '#material', '#options', '.promocode', '.calc-price');
 });
 
 /***/ }),
@@ -4403,6 +4406,45 @@ var accordeon = function accordeon() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (accordeon);
+
+/***/ }),
+
+/***/ "./src/js/modules/calc.js":
+/*!********************************!*\
+  !*** ./src/js/modules/calc.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var calc = function calc(size, material, options, promocode, result) {
+  var sizeBlock = document.querySelector(size),
+      materialBlock = document.querySelector(material),
+      optionsBlock = document.querySelector(options),
+      promocodeBlock = document.querySelector(promocode),
+      resultBlock = document.querySelector(result);
+  var sum = 0;
+
+  var calcFunc = function calcFunc() {
+    sum = Math.round(+sizeBlock.value + +materialBlock.value + +optionsBlock.value);
+
+    if (sizeBlock.value == '' || materialBlock.value == '') {
+      resultBlock.textContent = 'Пожалуйста, выберите размер и материал картины';
+    } else if (promocodeBlock.value === 'IWANTPOPART') {
+      resultBlock.textContent = "\u0412\u0430\u0448\u0430 \u0446\u0435\u043D\u0430 \u0441 \u0443\u0447\u0435\u0442\u043E\u043C \u0441\u043A\u0438\u0434\u043A\u0438: ".concat(Math.round(sum * 0.7));
+    } else {
+      resultBlock.textContent = sum;
+    }
+  };
+
+  sizeBlock.addEventListener('change', calcFunc);
+  materialBlock.addEventListener('change', calcFunc);
+  optionsBlock.addEventListener('change', calcFunc);
+  promocodeBlock.addEventListener('input', calcFunc);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (calc);
 
 /***/ }),
 
@@ -4783,25 +4825,17 @@ var showCards = function showCards(triggerSelector, wrapperSelector) {
   var btn = document.querySelector(triggerSelector),
       wrapper = document.querySelector(wrapperSelector);
   btn.addEventListener('click', function () {
-    var _this = this;
-
-    Object(_services_requests__WEBPACK_IMPORTED_MODULE_3__["getResourse"])('assets/db.json').then(function (res) {
+    Object(_services_requests__WEBPACK_IMPORTED_MODULE_3__["getResourse"])('assets/db.json2').then(function (res) {
       return renderCards(res.styles);
     }).catch(function (error) {
-      console.log(error); // let card = document.createElement('div');
-      // card.classList.add("animated", "fadeInUp", "col-sm-3", "col-sm-offset-0", "col-xs-10", "col-xs-offset-1");
-      // card.innerHTML =
-      //     `
-      //     <div class="styles-block">
-      //         <img src="Что-то не так" alt="style">
-      //         <h4>Что-то не так</h4>
-      //         <a href="Что-то не так">Подробнее</a>
-      //     </div>
-      // `;
-      // wrapper.appendChild(card);
-
-      _this.remove();
+      if (error) {
+        var cardError = document.createElement('div');
+        cardError.classList.add("animated", "fadeInUp", "col-sm-3", "col-sm-offset-0", "col-xs-10", "col-xs-offset-1");
+        cardError.innerHTML = "\n                    <div class=\"styles-block\">\n                        <p>\u041E\u0448\u0438\u0431\u043A\u0430</p>\n                    </div>\n                ";
+        wrapper.appendChild(cardError);
+      }
     });
+    this.remove();
 
     function renderCards(response) {
       response.forEach(function (_ref) {

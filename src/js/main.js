@@ -5,6 +5,7 @@ import mask from './modules/mask';
 import checkTextInputs from './modules/checkTextInputs';
 import showCards from './modules/showCards';
 import accordeon from './modules/accordeon';
+import calc from './modules/calc';
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -18,4 +19,5 @@ window.addEventListener('DOMContentLoaded', () => {
     checkTextInputs('[name="message"]');
     showCards('.button-transparent', '#styles .row');
     accordeon();
+    calc('#size', '#material', '#options', '.promocode', '.calc-price' );
 });

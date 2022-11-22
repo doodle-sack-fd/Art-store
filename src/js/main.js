@@ -6,6 +6,7 @@ import checkTextInputs from './modules/checkTextInputs';
 import showCards from './modules/showCards';
 import accordeon from './modules/accordeon';
 import calc from './modules/calc';
+import filter from './modules/filter'
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -20,4 +21,5 @@ window.addEventListener('DOMContentLoaded', () => {
     showCards('.button-transparent', '#styles .row');
     accordeon();
     calc('#size', '#material', '#options', '.promocode', '.calc-price' );
+    filter();
 });

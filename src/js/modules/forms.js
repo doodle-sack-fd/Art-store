@@ -1,6 +1,6 @@
 // import checkNumInputs from './checkNumInputs';
 import { postData } from "../services/requests";
-const forms = (popupSelector) => {
+const forms = (state) => {
 
     const form = document.querySelectorAll('form'),
         inputs = document.querySelectorAll('input'),
@@ -31,6 +31,7 @@ const forms = (popupSelector) => {
             elem.previousElementSibling.textContent = 'Файл не выбран';
         });
     };
+
 
     /* check length name */
 

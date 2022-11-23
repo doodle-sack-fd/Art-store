@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
     checkTextInputs('[name="name"]');
     checkTextInputs('[name="message"]');
     showCards('.button-transparent', '#styles .row');
-    accordeon();
+    accordeon('.accordion-heading', '.accordion-block');
     calc('#size', '#material', '#options', '.promocode', '.calc-price' );
     filter();
     pictureSize('.sizes-block');

@@ -7,7 +7,8 @@ import showCards from './modules/showCards';
 import accordeon from './modules/accordeon';
 import calc from './modules/calc';
 import filter from './modules/filter';
-import pictureSize from './modules/pictureSize'
+import pictureSize from './modules/pictureSize';
+import burger from './modules/burger';
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -24,4 +25,5 @@ window.addEventListener('DOMContentLoaded', () => {
     calc('#size', '#material', '#options', '.promocode', '.calc-price' );
     filter();
     pictureSize('.sizes-block');
+    burger('.burger', '.burger-menu');
 });

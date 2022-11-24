@@ -16,7 +16,7 @@ const burger = (burgerSelector, menuSelector) => {
             if (window.screen.availWidth > 993) {
                 menu.style.display = 'none';
             }
-        })
+        });
     });
 };
 

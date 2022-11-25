@@ -46,12 +46,12 @@ const forms = (state) => {
 
             let maxSize = 500000;
             if (elem.files[0].size > maxSize) {
-                alert((`File size > then ${maxSize}`)) ;
+                alert((`File size > then ${maxSize}`));
                 resetInputs();
             }
         });
     });
-
+ 
 
     form.forEach(item => {
         item.addEventListener('submit', (e) => {

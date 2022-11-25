@@ -1,6 +1,7 @@
+import { postData } from "../services/requests";
 const drop = () => {
-    const fileInputs = document.querySelectorAll('[name="upload"]');
 
+    const fileInputs = document.querySelectorAll('[name="upload"]');
     ['dragenter', 'dragleave', 'dragover', 'drop'].forEach(eventName => {
         fileInputs.forEach(input => {
             input.addEventListener(eventName, preventDefaults, false);
@@ -43,6 +44,15 @@ const drop = () => {
     fileInputs.forEach(input => {
         input.addEventListener('drop', (evt) => {
             input.files = evt.dataTransfer.files;
+            console.log(input.files);
+            const formData = new FormData(document.querySelector('form'));
+            postData('assets/server.php', formData)
+                .then(res => {
+                    console.log(res);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
             let dots;
             const arr = input.files[0].name.split('.')
             arr[0].length > 5 ? dots = '...' : dots = '.';
